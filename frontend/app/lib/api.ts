@@ -1,4 +1,6 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://railwayreservationsystem-ywfj.onrender.com/api';
+const rawUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_URL || process.env.NEXT_PUBLIC_BACKEND_URL || 'https://railwayreservationsystem-ywfj.onrender.com/api';
+const cleanUrl = rawUrl.replace(/\/+$/, '');
+const API_BASE = cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
 
 interface FetchOptions extends RequestInit {
   token?: string;
